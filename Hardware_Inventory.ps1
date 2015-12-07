@@ -27,6 +27,9 @@ $a = $a + "</style>"
 
 ConvertTo-Html -Head $a  -Title "Hardware Information for $name" -Body "<h1> Computer Name : $name </h1>" >  "$filepath\$name.html" 
 
+# System Info
+Get-WmiObject Win32_ComputerSystemProduct -ComputerName $name  | Select Vendor,Version,Name,IdentifyingNumber,UUID  | ConvertTo-html  -Body "<H2> System Information </H2>" >> "$filepath\$name.html"
+
 # MotherBoard: Win32_BaseBoard # You can Also select Tag,Weight,Width 
 Get-WmiObject -ComputerName $name  Win32_BaseBoard  |  Select Name,Manufacturer,Product,SerialNumber,Status  | ConvertTo-html  -Body "<H2> MotherBoard Information</H2>" >> "$filepath\$name.html"
 
@@ -39,15 +42,12 @@ Get-WmiObject win32_bios -ComputerName $name  | Select Manufacturer,Name,BIOSVer
 # CD ROM Drive
 Get-WmiObject Win32_CDROMDrive -ComputerName $name  |  select Name,Drive,MediaLoaded,MediaType,MfrAssignedRevisionLevel  | ConvertTo-html  -Body "<H2> CD ROM Information</H2>" >> "$filepath\$name.html"
 
-# System Info
-Get-WmiObject Win32_ComputerSystemProduct -ComputerName $name  | Select Vendor,Version,Name,IdentifyingNumber,UUID  | ConvertTo-html  -Body "<H2> System Information </H2>" >> "$filepath\$name.html"
-
 # Hard-Disk
 Get-WmiObject win32_diskDrive -ComputerName $name  | select Model,SerialNumber,InterfaceType,Size,Partitions  | ConvertTo-html  -Body "<H2> Harddisk Information </H2>" >> "$filepath\$name.html"
 
 # NetWord Adapters -ComputerName $name
 Get-WmiObject win32_networkadapter -ComputerName $name  | Select Name,Manufacturer,Description ,AdapterType,Speed,MACAddress,NetConnectionID |  ConvertTo-html  -Body "<H2> Network Card Information</H2>" >> "$filepath\$name.html"
-gwmi Win32_NetworkAdapterConfiguration | Select Description, DHCPServer, IPAddress, DefaultIPGateway, DNSDomain, IPSubnet, DNSServerSearchOrder |  ConvertTo-html  -Body "<H2> Nerwork Config Information</H2>" >> "$filepath\$name.html"
+#gwmi Win32_NetworkAdapterConfiguration | Select Description, DHCPServer, IPAddress, DefaultIPGateway, DNSDomain, IPSubnet, DNSServerSearchOrder |  ConvertTo-html  -Body "<H2> Nerwork Config Information</H2>" >> "$filepath\$name.html"
 
 # Memory
 Get-WmiObject Win32_PhysicalMemory -ComputerName $name  | select BankLabel,DeviceLocator,Capacity,Manufacturer,PartNumber,SerialNumber,Speed  | ConvertTo-html  -Body "<H2> Physical Memory Information</H2>" >> "$filepath\$name.html"
@@ -56,7 +56,6 @@ Get-WmiObject Win32_PhysicalMemory -ComputerName $name  | select BankLabel,Devic
 Get-WmiObject Win32_Processor -ComputerName $name  | Select Name,Manufacturer,Caption,DeviceID,CurrentClockSpeed,CurrentVoltage,DataWidth,L2CacheSize,L3CacheSize,NumberOfCores,NumberOfLogicalProcessors,Status  | ConvertTo-html  -Body "<H2> CPU Information</H2>" >> "$filepath\$name.html"
 
 ## System enclosure 
-
 Get-WmiObject Win32_SystemEnclosure -ComputerName $name  | Select Tag,AudibleAlarm,ChassisTypes,HeatGeneration,HotSwappable,InstallDate,LockPresent,PoweredOn,PartNumber,SerialNumber  | ConvertTo-html  -Body "<H2> System Enclosure Information </H2>" >> "$filepath\$name.html"
 
 #Monitor
@@ -78,6 +77,7 @@ Get-WmiObject Win32_Share | Select Name, Path, Description | ConvertTo-html  -Bo
 gwmi Win32_Volume | Select Label, Caption, FileSystem, Capacity, SerialNumber | ConvertTo-html  -Body "<H2> Discos </H2>" >> "$filepath\$name.html"
 #Services List
 #gwmi Win32_Service | Select Name, StartMode, State, Status | ConvertTo-html -Body "<H2> Services List </H2>" >> "$filepath\$name.html"
+Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-html  -Body "<H2> Programas Instalados </H2>" >> "$filepath\$name.html"
 
 
 
@@ -86,7 +86,7 @@ gwmi Win32_Volume | Select Label, Caption, FileSystem, Capacity, SerialNumber | 
 
 
 ## Invoke Expressons
-#invoke-Expression "$filepath\$name.html"
+invoke-Expression "$filepath\$name.html"
 
 #### Sending Email
 
