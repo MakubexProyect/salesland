@@ -46,7 +46,8 @@ Get-WmiObject Win32_ComputerSystemProduct -ComputerName $name  | Select Vendor,V
 Get-WmiObject win32_diskDrive -ComputerName $name  | select Model,SerialNumber,InterfaceType,Size,Partitions  | ConvertTo-html  -Body "<H2> Harddisk Information </H2>" >> "$filepath\$name.html"
 
 # NetWord Adapters -ComputerName $name
-Get-WmiObject win32_networkadapter -ComputerName $name  | Select Name,Manufacturer,Description ,AdapterType,Speed,MACAddress,NetConnectionID |  ConvertTo-html  -Body "<H2> Nerwork Card Information</H2>" >> "$filepath\$name.html"
+Get-WmiObject win32_networkadapter -ComputerName $name  | Select Name,Manufacturer,Description ,AdapterType,Speed,MACAddress,NetConnectionID |  ConvertTo-html  -Body "<H2> Network Card Information</H2>" >> "$filepath\$name.html"
+gwmi Win32_NetworkAdapterConfiguration | Select Description, DHCPServer, IPAddress, DefaultIPGateway, DNSDomain, IPSubnet, DNSServerSearchOrder |  ConvertTo-html  -Body "<H2> Nerwork Config Information</H2>" >> "$filepath\$name.html"
 
 # Memory
 Get-WmiObject Win32_PhysicalMemory -ComputerName $name  | select BankLabel,DeviceLocator,Capacity,Manufacturer,PartNumber,SerialNumber,Speed  | ConvertTo-html  -Body "<H2> Physical Memory Information</H2>" >> "$filepath\$name.html"
@@ -59,7 +60,8 @@ Get-WmiObject Win32_Processor -ComputerName $name  | Select Name,Manufacturer,Ca
 Get-WmiObject Win32_SystemEnclosure -ComputerName $name  | Select Tag,AudibleAlarm,ChassisTypes,HeatGeneration,HotSwappable,InstallDate,LockPresent,PoweredOn,PartNumber,SerialNumber  | ConvertTo-html  -Body "<H2> System Enclosure Information </H2>" >> "$filepath\$name.html"
 
 #Monitor
-gwmi WmiMonitorID -ComputerName $name -Namespace root\wmi | Select InstanceName, YearOfManufacture | ConvertTo-html  -Body "<H2> System Monitor Information </H2>" >> "$filepath\$name.html"
+gwmi Win32_DesktopMonitor | Select MonitorManufacturer, Name, ScreenHeight, ScreenWidth | ConvertTo-html  -Body "<H2> Monitor Information </H2>" >> "$filepath\$name.html"
+#gwmi WmiMonitorID -ComputerName $name -Namespace root\wmi | Select InstanceName, YearOfManufacture 
 
 #Teclado
 gwmi Win32_Keyboard -Namespace root\cimv2 | Select CreationClassName, Name, Status, Description, NumberOfFunctionKeys | ConvertTo-html  -Body "<H2> Keyboard Information </H2>" >> "$filepath\$name.html"
@@ -68,8 +70,19 @@ gwmi Win32_Keyboard -Namespace root\cimv2 | Select CreationClassName, Name, Stat
 gwmi Win32_Printer | Select Location, Name, ShareName, SystemName, PortName | ConvertTo-html  -Body "<H2> Printer Information </H2>" >> "$filepath\$name.html"
 gwmi Win32_TCPIPPrinterPort | Select Description, HostAddress, Name, PortNumber, Queue, SNMPEnabled | ConvertTo-html -Body "<H2> Port Printer Information </H2>" >> "$filepath\$name.html"
 
+
+#gwmi Win32_SystemDriver
+#Compartida
+Get-WmiObject Win32_Share | Select Name, Path, Description | ConvertTo-html  -Body "<H2> Carpetas Compartidas </H2>" >> "$filepath\$name.html"
+#Disk Detalle
+gwmi Win32_Volume | Select Label, Caption, FileSystem, Capacity, SerialNumber | ConvertTo-html  -Body "<H2> Discos </H2>" >> "$filepath\$name.html"
+#Services List
+#gwmi Win32_Service | Select Name, StartMode, State, Status | ConvertTo-html -Body "<H2> Services List </H2>" >> "$filepath\$name.html"
+
+
+
 #HW Change
-Get-WmiObject Win32_DeviceChangeEvent -Namespace ROOT/cimv2 | Select EventType
+#Get-WmiObject Win32_DeviceChangeEvent -Namespace ROOT/cimv2 | Select EventType
 
 
 ## Invoke Expressons
