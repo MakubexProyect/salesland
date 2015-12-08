@@ -83,7 +83,7 @@ gwmi Win32_Volume | Select Label, Caption, FileSystem, Capacity, SerialNumber | 
 Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-html  -Body "<H2> Programas Instalados </H2>" >> "$filepath\$name.html"
 #gwmi Win32_SystemDriver | Select Name, Started, Status | ConvertTo-html  -Body "<H2> Driver List </H2>" >> "$filepath\$name.html"
 
-gwmi Win32_OperatingSystem | Select Name
+gwmi Win32_OperatingSystem | Select Manufacturer, OSArchitecture, InstallDate
 [System.Environment]::OSVersion.Version
 
 #HW Change
