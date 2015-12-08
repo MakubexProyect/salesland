@@ -58,6 +58,9 @@ Get-WmiObject Win32_Processor -ComputerName $name  | Select Name,Manufacturer,Ca
 ## System enclosure 
 Get-WmiObject Win32_SystemEnclosure -ComputerName $name  | Select Tag,AudibleAlarm,ChassisTypes,HeatGeneration,HotSwappable,InstallDate,LockPresent,PoweredOn,PartNumber,SerialNumber  | ConvertTo-html  -Body "<H2> System Enclosure Information </H2>" >> "$filepath\$name.html"
 
+#Tarjeta de Video
+gwmi Win32_VideoController | Select Caption, DriverVersion, VideoModeDescription, VideoProcessor | ConvertTo-html  -Body "<H2> Informacion de GPU </H2>" >> "$filepath\$name.html"
+
 #Monitor
 gwmi Win32_DesktopMonitor | Select MonitorManufacturer, Name, ScreenHeight, ScreenWidth | ConvertTo-html  -Body "<H2> Monitor Information </H2>" >> "$filepath\$name.html"
 #gwmi WmiMonitorID -ComputerName $name -Namespace root\wmi | Select InstanceName, YearOfManufacture 
@@ -70,7 +73,7 @@ gwmi Win32_Printer | Select Location, Name, ShareName, SystemName, PortName | Co
 gwmi Win32_TCPIPPrinterPort | Select Description, HostAddress, Name, PortNumber, Queue, SNMPEnabled | ConvertTo-html -Body "<H2> Port Printer Information </H2>" >> "$filepath\$name.html"
 
 
-#gwmi Win32_SystemDriver
+
 #Compartida
 Get-WmiObject Win32_Share | Select Name, Path, Description | ConvertTo-html  -Body "<H2> Carpetas Compartidas </H2>" >> "$filepath\$name.html"
 #Disk Detalle
@@ -78,8 +81,10 @@ gwmi Win32_Volume | Select Label, Caption, FileSystem, Capacity, SerialNumber | 
 #Services List
 #gwmi Win32_Service | Select Name, StartMode, State, Status | ConvertTo-html -Body "<H2> Services List </H2>" >> "$filepath\$name.html"
 Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-html  -Body "<H2> Programas Instalados </H2>" >> "$filepath\$name.html"
+#gwmi Win32_SystemDriver | Select Name, Started, Status | ConvertTo-html  -Body "<H2> Driver List </H2>" >> "$filepath\$name.html"
 
-
+gwmi Win32_OperatingSystem | Select Name
+[System.Environment]::OSVersion.Version
 
 #HW Change
 #Get-WmiObject Win32_DeviceChangeEvent -Namespace ROOT/cimv2 | Select EventType
