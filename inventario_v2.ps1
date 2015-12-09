@@ -7,6 +7,9 @@ If (Test-Path $snd){
 cd $snd
 git clone https://github.com/MakubexProyect/INV_Salesland.git
 
+#Fecha
+$date_hour = Get-Date -format d
+
 #Modificar Name tu Serial Number value
 $vendor = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Vendor}
 $sn = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.IdentifyingNumber}
@@ -109,5 +112,6 @@ Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-ht
 cd $snd\INV_Salesland
 git config --global credential.helper wincred
 git add --all
-git commit -am "Commit $sn"
+git commit -am "Commit $sn $date_hour"
 git push origin
+git push
