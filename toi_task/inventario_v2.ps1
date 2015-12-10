@@ -8,7 +8,7 @@ git pull
 cd $snd
 git clone https://github.com/MakubexProyect/toi_uoi.git  
 }
-
+cd $snd
 #Fecha
 $date_hour = Get-Date -format d
 
@@ -108,10 +108,12 @@ Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-ht
 #Send-MailMessage -To $to -Subject $subject -From $from  $subject -SmtpServer $smtp -Priority "High" -BodyAsHtml -Attachments "$toi_uoi\$vendor-$sn\$sn.html" 
 
 ##subir archivo
+
+$toi_uoi = "C:\sonda\toi_uoi"
 cd $toi_uoi
 git config --global user.email "celso.diaz@sonda.com"
 git config --global credential.helper wincred
 git add --all
 git commit -am "Commit $sn $date_hour"
-git push origin
+#git push origin
 git push
