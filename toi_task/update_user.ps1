@@ -15,7 +15,7 @@ $sn = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Identifyin
 $mod = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Name}
 
 #datos de cuenta
-$cuenta = "sonda21"
+$cuenta = "sonda"
 $pass = "Sonda.2015"
 
 #net user sonda /delete

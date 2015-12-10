@@ -22,3 +22,8 @@ git pull
   cd $snd
   git clone https://github.com/MakubexProyect/toi.git
 }
+
+#Creacion de Tarea Diaria
+$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-NoProfile -WindowStyle Hidden -command "C:\sonda\toi\toi_programer\logon.ps1"'
+$trigger =  New-ScheduledTaskTrigger -AtLogon
+Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "TOI-Task" -TaskPath "TOI" -User "NT AUTHORITY\SYSTEM" -Description "Tarea de TOI"

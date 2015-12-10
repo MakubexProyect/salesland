@@ -109,6 +109,7 @@ Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-ht
 
 ##subir archivo
 cd $toi_uoi
+git config --global user.email "celso.diaz@sonda.com"
 git config --global credential.helper wincred
 git add --all
 git commit -am "Commit $sn $date_hour"
