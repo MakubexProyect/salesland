@@ -5,7 +5,7 @@ $toi = "$snd\toi"
 $toi_uoi = "$snd\toi_uoi"
 
 #valida Toi
-cd "C:\sonda"
+cd "C:\sonda\toi"
 git pull
 
 #Tareas que se ejecutaran
