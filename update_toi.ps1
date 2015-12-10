@@ -18,5 +18,5 @@ cd $snd
 git pull
   }Else{
   cd $snd
-  git clone https://github.com/sondaperu/toi.git
+  git clone https://github.com/MakubexProyect/toi.git
 }
