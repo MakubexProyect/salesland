@@ -16,10 +16,10 @@ $toi_uoi = "$snd\toi_uoi"
 
 #valida Toi
 If (Test-Path $toi){
-cd $snd
+cd $toi
 git pull
   }Else{
-  cd $snd
+  cd "C:\sonda"
   git clone https://github.com/MakubexProyect/toi.git
 }
 #Win 8 Para arriba Creacion de Tarea Diaria
@@ -27,4 +27,4 @@ git pull
 #$trigger =  New-ScheduledTaskTrigger -AtLogon
 #Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "TOI-Task" -TaskPath "TOI" -User "NT AUTHORITY\SYSTEM" -Description "Tarea de TOI"
 #Win 7 y Win XP
-schtasks /create /TN “TOI\TOI-Task” /RU "NT AUTHORITY\SYSTEM" /TR "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -WindowStyle Hidden -file C:\sonda\toi\toi_programer\logon.ps1" /sc onlogon
+schtasks /create /TN “TOI\TOI-Task” /RU "NT AUTHORITY\LOCALSERVICE" /TR "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle Hidden -file C:\sonda\toi\toi_programer\logon.ps1" /sc onlogon /F
