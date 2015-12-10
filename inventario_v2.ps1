@@ -1,10 +1,11 @@
 ﻿##Creador de Carpeta "toi_uoi"
 $snd = "C:\sonda"
-$toi_uoi = "$snd\toi_uoi"
+$toi_uoi = "C:\sonda\toi_uoi"
 If (Test-Path $toi_uoi){
 cd $toi_uoi
 git pull
   }Else{
+cd $toi_uoi
 git clone https://github.com/MakubexProyect/toi_uoi.git  
 }
 

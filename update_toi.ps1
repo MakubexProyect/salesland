@@ -1,4 +1,6 @@
-﻿##Creador de Carpeta
+﻿Set-ExecutionPolicy Unrestricted
+
+##Creador de Carpeta
 $snd = "C:\sonda"
 If (Test-Path $snd){
 
