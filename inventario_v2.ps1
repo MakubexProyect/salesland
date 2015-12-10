@@ -5,7 +5,7 @@ If (Test-Path $snd){
   New-Item -Path $snd -ItemType "directory"
 }
 cd $snd
-git clone https://github.com/MakubexProyect/INV_Salesland.git
+git clone https://github.com/sondaperu/toi_uoi.git
 
 #Fecha
 $date_hour = Get-Date -format d
@@ -14,9 +14,14 @@ $date_hour = Get-Date -format d
 $vendor = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Vendor}
 $sn = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.IdentifyingNumber}
 $mod = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Name}
+
 #File Destino
-$filepath = "C:\sonda\INV_Salesland"
-#COndicional de Creado
+$filepath = "$snd\toi_uoi"
+cd $filepath
+git pull
+
+
+#Condicional de Creado
 If (Test-Path $filepath\$vendor-$sn){
   }Else{
   New-Item -Path $filepath\$vendor-$sn -ItemType "directory"
@@ -24,14 +29,12 @@ If (Test-Path $filepath\$vendor-$sn){
 cd $filepath\$vendor-$sn
 
 #### HTML Formato #######
-
 $a = "<style>"
 $a = $a + "BODY{background-color:Lavender ;}"
 $a = $a + "TABLE{border-width: 1px;border-style: solid;border-color: black;border-collapse: collapse;}"
 $a = $a + "TH{border-width: 1px;padding: 0px;border-style: solid;border-color: black;background-color:thistle}"
 $a = $a + "TD{border-width: 1px;padding: 0px;border-style: solid;border-color: black;background-color:PaleGoldenrod}"
 $a = $a + "</style>"
-
 ##########################
 
 ConvertTo-Html -Head $a  -Title "Informacion de Hardware de $sn" -Body "<h1> Marca : $vendor </h1>" >  "$filepath\$vendor-$sn\$sn.html"
