@@ -9,8 +9,8 @@ If (Test-Path $snd){
 #Fecha
 $date_hour = Get-Date -format d
 #Carpetas de GIT
-$toi = $snd\toi
-$toi_uoi =$snd\toi_uoi
+$toi = "$snd\toi"
+$toi_uoi = "$snd\toi_uoi"
 
 #valida Toi
 If (Test-Path $toi){
