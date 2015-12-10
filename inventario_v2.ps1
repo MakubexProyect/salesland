@@ -5,7 +5,7 @@ If (Test-Path $toi_uoi){
 cd $toi_uoi
 git pull
   }Else{
-cd $toi_uoi
+cd $snd
 git clone https://github.com/MakubexProyect/toi_uoi.git  
 }
 
