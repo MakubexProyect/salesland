@@ -1,1 +1,1 @@
-%~dp0pass_up.bat
+%~dp0
