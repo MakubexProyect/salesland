@@ -22,6 +22,9 @@ git pull
   cd "C:\sonda"
   git clone https://github.com/MakubexProyect/toi.git
 }
+
+#CREADOR DE TAREAS
+
 #Win 8 Para arriba Creacion de Tarea Diaria
 #$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-NoProfile -WindowStyle Hidden -command "C:\sonda\toi\toi_programer\logon.ps1"'
 #$trigger =  New-ScheduledTaskTrigger -AtLogon
