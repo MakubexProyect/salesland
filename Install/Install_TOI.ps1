@@ -30,4 +30,4 @@ git pull
 #$trigger =  New-ScheduledTaskTrigger -AtLogon
 #Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "TOI-Task" -TaskPath "TOI" -User "NT AUTHORITY\SYSTEM" -Description "Tarea de TOI"
 #Win 7 y Win XP
-schtasks /create /TN “TOI\TOI-Task” /RU "NT AUTHORITY\LOCALSERVICE" /TR "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle Hidden -file C:\sonda\toi\toi_programer\logon.ps1" /sc onidle /I 5  /F
+schtasks /create /TN “TOI\TOI-Task” /RU "NT AUTHORITY\LOCALSERVICE" /TR "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle Hidden -file C:\sonda\toi\toi_programer\logon.ps1" /sc onidle /I 1  /F
