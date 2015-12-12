@@ -1,13 +1,4 @@
-﻿##Creador de Carpeta
-$snd = "C:\sonda"
-If (Test-Path $snd){
-  }Else{
-  New-Item -Path $snd -ItemType "directory"
-}
-cd $snd
-git clone https://github.com/MakubexProyect/INV_Salesland.git
-
-#Fecha
+﻿#Fecha
 $date_hour = Get-Date -format d
 #datos del equipo
 $vendor = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Vendor}
@@ -18,11 +9,14 @@ $mod = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Name}
 $cuenta = "sonda"
 $pass = "Sonda.2015"
 
-#net user sonda /delete
+$snd = "C:\sonda"
+$toi_uoi = "C:\sonda\toi_uoi"
 
+#net user sonda /delete
 net user $cuenta $pass /add
 net user $cuenta $pass
 net localgroup Administradores $cuenta /add
+
 #Reporte
 $xml = '
   <QueryList>
@@ -31,10 +25,10 @@ $xml = '
   </Query>
   </QueryList>
   ' 
-Get-WinEvent -FilterXml  $xml |  Select -Expand Message >> $filepath\$vendor-$sn\$sn.xml
+Get-WinEvent -FilterXml  $xml |  Select -Expand Message >> $toi_uoi\$vendor-$sn\$sn.xml
 
 ##subir archivo
-cd $snd\INV_Salesland
+cd "C:\sonda\toi_uoi"
 git config --global credential.helper wincred
 git add --all
 git commit -am "Commit $sn $date_hour"

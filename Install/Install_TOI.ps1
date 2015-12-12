@@ -2,7 +2,6 @@
 ##Creador de Carpeta
 $snd = "C:\sonda"
 If (Test-Path $snd){
-
   }Else{
   New-Item -Path $snd -ItemType "directory"
 }
@@ -11,7 +10,6 @@ If (Test-Path $snd){
 $date_hour = Get-Date -format d
 #Carpetas de GIT
 $toi = "$snd\toi"
-
 
 #valida Toi
 If (Test-Path $toi){
@@ -23,10 +21,18 @@ git pull
 }
 
 #CREADOR DE TAREAS
-
 #Win 8 Para arriba Creacion de Tarea Diaria
 #$action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument '-NoProfile -WindowStyle Hidden -command "C:\sonda\toi\toi_programer\logon.ps1"'
 #$trigger =  New-ScheduledTaskTrigger -AtLogon
 #Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "TOI-Task" -TaskPath "TOI" -User "NT AUTHORITY\SYSTEM" -Description "Tarea de TOI"
 #Win 7 y Win XP
-schtasks /create /TN “TOI\TOI-Task” /RU "SYSTEM" /TR "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -WindowStyle Hidden -file C:\sonda\toi\toi_programer\logon.ps1" /sc onidle /I 1  /F
+
+#IMPORTADO DE TAREA POR XML
+schtasks /create /TN “TOI\TOI-Update” /RU "SYSTEM" /XML "C:\sonda\toi\toi_programer\TOI-Update.xml" /F
+schtasks /create /TN “TOI\TOI-Inventario” /RU "SYSTEM" /XML "C:\sonda\toi\toi_programer\TOI-Inventario.xml" /F
+
+#Copia de StartUP - CONTINGENCIA
+robocopy "C:\sonda\toi\Install\alt\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' inventario.bat /MIR
+robocopy "C:\sonda\toi\fondo\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' *.lnk
+#powershell -WindowStyle Hidden -file "C:\sonda\toi\toi_task\inventario_v2.ps1"
+
