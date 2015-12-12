@@ -94,4 +94,4 @@ Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-ht
 #Send-MailMessage -To $to -Subject $subject -From $from  $subject -SmtpServer $smtp -Priority "High" -BodyAsHtml -Attachments "$toi_uoi\$vendor-$sn\$sn.html" 
 
 #push Update
-powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\pull_toi_uoi.ps1"
+#powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\pull_toi_uoi.ps1"
