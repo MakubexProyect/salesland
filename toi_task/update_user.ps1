@@ -27,12 +27,6 @@ $xml = '
   ' 
 Get-WinEvent -FilterXml  $xml |  Select -Expand Message >> $toi_uoi\$vendor-$sn\$sn.xml
 
-##subir archivo
-cd "C:\sonda\toi_uoi"
-git config --global credential.helper wincred
-git add --all
-git commit -am "Commit $sn $date_hour"
-git push origin
-git push
-
+#push Update
+powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\pull_toi_uoi.ps1"
 

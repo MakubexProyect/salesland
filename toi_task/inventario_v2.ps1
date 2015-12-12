@@ -1,30 +1,14 @@
-﻿##Creador de Carpeta "toi_uoi"
+﻿##Variables
 $snd = "C:\sonda"
 $toi_uoi = "C:\sonda\toi_uoi"
-If (Test-Path $toi_uoi){
-cd $toi_uoi
-git pull
-  }Else{
-cd $snd
-git clone https://github.com/MakubexProyect/toi_uoi.git  
-}
-cd $snd
-#Fecha
 $date_hour = Get-Date -format d
-#agrgar al final del nombre para tener historicos detallados
 $dia = get-date -uformat %d%m%y
-
-#Modificar Name tu Serial Number value
 $vendor = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Vendor}
 $sn = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.IdentifyingNumber}
 $mod = Get-WmiObject Win32_ComputerSystemProduct  | ForEach-Object {$_.Name}
 
-#Condicional de Creado
-If (Test-Path $toi_uoi\$vendor-$sn){
-  }Else{
-  New-Item -Path $toi_uoi\$vendor-$sn -ItemType "directory"
-}
-cd $toi_uoi\$vendor-$sn
+#make SN Folder
+powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\make_sn_folder.ps1"
 
 #### HTML Formato #######
 $a = "<style>"
@@ -109,10 +93,5 @@ Get-WmiObject -class win32_Product | Select Name, Vendor, Version | ConvertTo-ht
 
 #Send-MailMessage -To $to -Subject $subject -From $from  $subject -SmtpServer $smtp -Priority "High" -BodyAsHtml -Attachments "$toi_uoi\$vendor-$sn\$sn.html" 
 
-##subir archivo
-cd "C:\sonda\toi_uoi"
-git config --global user.email "celso.diaz@sonda.com"
-git config --global credential.helper wincred
-git add --all
-git commit -am "Commit $sn $date_hour"
-git push
+#push Update
+powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\pull_toi_uoi.ps1"

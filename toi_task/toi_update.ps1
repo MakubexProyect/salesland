@@ -7,4 +7,4 @@ git pull
 C:\sonda\toi\fondo\Bginfo.exe C:\sonda\toi\fondo\toi_bginfo.bgi /timer:00 /ACCEPTEULA
 
 #Update de Tareas
-powershell -WindowStyle Hidden -file "C:\sonda\toi\toi_task\toi_task_update.ps1"
+powershell.exe -WindowStyle Hidden -file "C:\sonda\toi\toi_task\toi_task_update.ps1"
