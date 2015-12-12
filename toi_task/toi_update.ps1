@@ -1,6 +1,3 @@
-#Carpetas de GIT Toi
-$toi = "$snd\toi"
-
 #valida Toi
 cd "C:\sonda\toi"
 git pull
