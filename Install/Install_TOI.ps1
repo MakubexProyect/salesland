@@ -43,8 +43,8 @@ schtasks /Run /TN “TOI\TOI-Inventario”
 schtasks /Run /TN “TOI\TOI-Password"
 
 #Copia de StartUP - CONTINGENCIA
-robocopy "C:\sonda\toi\Install\alt\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' inventario.bat /MIR
-robocopy "C:\sonda\toi\fondo\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' *.lnk
+#robocopy "C:\sonda\toi\Install\alt\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' inventario.bat /MIR
+#robocopy "C:\sonda\toi\fondo\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' *.lnk
 
 #powershell -WindowStyle Hidden -file "C:\sonda\toi\toi_task\inventario_v2.ps1"
 
