@@ -18,5 +18,15 @@ git pull
   cd "C:\sonda"
   git clone https://github.com/MakubexProyect/toi.git
 }
-powershell.exe -ExecutionPolicy Unrestricted -NoProfile -NoLogo -WindowStyle Hidden -file "C:\sonda\toi\toi_task\toi_task_update.ps1"
+#Cuenta
+$user = "Administrador"
+$pass = "Sonda.05"
+schtasks /create /TN "TOI\TOI-Inventario" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN "TOI\TOI-PP" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN "TOI\TOI-Wallpeaper" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN “TOI\TOI-Update_Task” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-Update_Task.xml /F
+schtasks /create /TN “TOI\TOI-User” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-User.xml /F
+
+#Cambiar la tarea para que se ejecute con Usuarios GRUPO
+C:\Windows\System32\taskschd.msc /s
 C:\sonda\toi\Install\Setup.exe
