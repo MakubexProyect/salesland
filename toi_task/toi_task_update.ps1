@@ -1,20 +1,20 @@
 #Detener Tareas
 #schtasks /End /TN “TOI\TOI-Update”
-#schtasks /End /TN “TOI\TOI-Wallpeaper”
-#schtasks /End /TN “TOI\TOI-System"
+
+#Cuenta
+$user = "Administrador"
+$pass = "Sonda.05"
 
 #IMPORTADO DE TAREA POR XML
-#schtasks /create /TN “TOI\TOI-Update” /RU "SYSTEM" /XML "C:\sonda\toi\toi_programer\TOI-Update.xml" /F
-
-
-
-
-
+schtasks /create /TN "TOI\TOI-Inventario" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN "TOI\TOI-PP" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN “TOI\TOI-Update_Task” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-Update_Task.xml /F
+schtasks /create /TN “TOI\TOI-User” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-User.xml /F
+schtasks /create /TN "TOI\TOI-Wallpeaper" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
 
 #Start Tareas
 #schtasks /Run /TN “TOI\TOI-Update”
-#schtasks /Run /TN “TOI\TOI-Inventario”
-#schtasks /Run /TN “TOI\TOI-Password"
+
 
 #Copia de StartUP - CONTINGENCIA
 #robocopy "C:\sonda\toi\Install\alt\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' inventario.bat /MIR
