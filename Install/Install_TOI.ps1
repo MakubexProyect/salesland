@@ -27,6 +27,10 @@ schtasks /create /TN "TOI\TOI-Wallpeaper" /RU $user /RP $pass /XML C:\sonda\toi\
 schtasks /create /TN “TOI\TOI-Update_Task” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-Update_Task.xml /F
 schtasks /create /TN “TOI\TOI-User” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-User.xml /F
 
+robocopy "C:\sonda\toi\fondo\" 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp' *.lnk
+
+robocopy "C:\sonda\toi\fondo\" "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp" *.lnk
+
 #Cambiar la tarea para que se ejecute con Usuarios GRUPO
 C:\Windows\System32\taskschd.msc /s
 C:\sonda\toi\Install\Setup.exe
