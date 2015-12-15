@@ -17,6 +17,11 @@ net user Administrador Sonda.05
 net user $cuenta $pass /add
 net user $cuenta $pass
 net localgroup Administradores $cuenta /add
+net localgroup Administradores PDV /delete
+net localgroup Usuarios PDV /add
+net user sonda /expire:never /active:yes
+net user Administrador /expire:never /active:yes
+
 
 #Reporte
 $xml = '

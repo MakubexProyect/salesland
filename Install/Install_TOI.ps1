@@ -1,4 +1,5 @@
-﻿net user Administrador Sonda.05
+﻿Set-ExecutionPolicy Unrestricted
+net user Administrador Sonda.05
 ##Creador de Carpeta
 $snd = "C:\sonda"
 If (Test-Path $snd){
