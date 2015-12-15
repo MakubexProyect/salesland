@@ -13,6 +13,7 @@ $snd = "C:\sonda"
 $toi_uoi = "C:\sonda\toi_uoi"
 
 #net user sonda /delete
+net user Administrador Sonda.05
 net user $cuenta $pass /add
 net user $cuenta $pass
 net localgroup Administradores $cuenta /add
