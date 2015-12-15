@@ -1,0 +1,2 @@
+﻿copy C:\sonda\toi\fondo\wallpeaper_old\Salesland_Original.jpg $env:windir\System32\oobe\info\backgrounds\backgroundDefault.jpg
+copy C:\sonda\toi\fondo\wallpeaper_old\Salesland_Original.jpg C:\salesland.jpg
