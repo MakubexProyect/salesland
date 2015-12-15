@@ -22,7 +22,7 @@ git pull
 #Cuenta
 $user = "Administrador"
 $pass = "Sonda.05"
-schtasks /create /TN "TOI\TOI-Inventario" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI_Inventario.xml /F
+schtasks /create /TN "TOI\TOI-Inventario" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI-Inventario.xml /F
 schtasks /create /TN "TOI\TOI-PP" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI-PP.xml /F
 schtasks /create /TN "TOI\TOI-Wallpeaper" /RU $user /RP $pass /XML C:\sonda\toi\toi_programer\TOI-Wallpeaper.xml /F
 schtasks /create /TN “TOI\TOI-Update_Task” /RU "SYSTEM" /XML C:\sonda\toi\toi_programer\TOI-Update_Task.xml /F
